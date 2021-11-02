@@ -51,7 +51,8 @@ async function run() {
     const productCollection = database.collection("products");
     const orderCollection = database.collection("orders");
 
-    /// GET PRODUCTS API
+    /// GET PRODUCTS API ////
+
     app.get('/products', async (req, res) => {
       console.log(req.query);
       const cursor = productCollection.find({});
@@ -74,7 +75,8 @@ async function run() {
 
 
 
-    ////// Use POST TO GET
+    ////// Use POST TO GET ////
+
     app.post('/products/byKeys', async (req, res) => {
       const keys = (req.body);
       const query = { key: { $in: keys } }
@@ -85,7 +87,8 @@ async function run() {
 
 
 
-    // ADD Orders API 
+    // ADD Orders API  //
+
     app.get('/orders', verifyToken, async (req, res) => {
       const email = req.query.email;
       if (req.decodedUserEmail == email) {
