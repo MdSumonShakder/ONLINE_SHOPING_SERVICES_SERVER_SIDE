@@ -78,7 +78,7 @@ async function run() {
     ////// Use POST TO GET ////
 
     app.post('/products/byKeys', async (req, res) => {
-      console.log(req.body);
+      const keys = (req.body);
       const query = { key: { $in: keys } }
       const products = await productCollection.find(query).toArray();
       res.send(products);
