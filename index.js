@@ -2,17 +2,17 @@ const express = require('express');
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
 const cors = require('cors');
-var admin = require("firebase-admin");
+const admin = require("firebase-admin");
 
 
 
 const app = express();
-const port = process.env.PORT || 7000;
+const port = process.env.PORT || 5000;
 
 
 // FIREBASE ADMIN INITIALIZATION ///
 
-var serviceAccount = require('./react-shopping-card-firebase-adminsdk-m8utf-3a64701fc6 (1).json');
+const serviceAccount = require('./react-shopping-card-firebase-adminsdk-m8utf-3a64701fc6 (1).json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
