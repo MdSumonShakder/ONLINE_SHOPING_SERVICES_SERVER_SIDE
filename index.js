@@ -2,7 +2,7 @@ const express = require('express');
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
 const cors = require('cors');
-const admin = require("firebase-admin");
+// const admin = require("firebase-admin");
 
 
 
@@ -12,11 +12,11 @@ const port = process.env.PORT || 5000;
 
 // FIREBASE ADMIN INITIALIZATION ///
 
-const serviceAccount = require('./react-shopping-card-firebase-adminsdk-m8utf-3a64701fc6 (1).json');
+// const serviceAccount = require('./react-shopping-card-firebase-adminsdk-m8utf-3a64701fc6 (1).json');
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount)
+// });
 
 ///// MIDDLEWARE ////
 
@@ -29,25 +29,25 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
-async function verifyToken(req, res, next) {
-  if (req.headers?.authorization?.startsWith('Bearer ')) {
-    const idToken = req.headers.authorization.split('Bearer ')[1];
-    try {
-      const decodedUser = await admin.auth().verifyIdToken(idToken);
-      req.decodedUserEmail = decodedUser.email;
-    }
-    catch {
+// async function verifyToken(req, res, next) {
+//   if (req.headers?.authorization?.startsWith('Bearer ')) {
+//     const idToken = req.headers.authorization.split('Bearer ')[1];
+//     try {
+//       const decodedUser = await admin.auth().verifyIdToken(idToken);
+//       req.decodedUserEmail = decodedUser.email;
+//     }
+//     catch {
 
-    }
-  }
-  next();
-};
+//     }
+//   }
+//   next();
+// };
 
 
 async function run() {
   try {
     await client.connect();
-    const database = client.db("Online-Shop");
+    const database = client.db("Online_Shop");
     const productCollection = database.collection("products");
     const orderCollection = database.collection("orders");
 
